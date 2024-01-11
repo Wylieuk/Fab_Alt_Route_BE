@@ -1,0 +1,40 @@
+
+.component.breadcrumb {
+
+		
+}
+
+.component.breadcrumb .component_title{
+	color:black;
+	background-color:white;
+	margin:0;
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.component.breadcrumb .component_title a{
+	text-transform:capitalize;
+	color:black;
+	text-decoration:none;
+}
+
+.component.breadcrumb .component_title a:hover{
+	text-decoration:underline;
+}
+
+.component.breadcrumb .component_title a:last-of-type{
+	color:#dc0a1e;
+}
+
+.component.breadcrumb .component_title span.separator{
+	padding:0 0 0 5px;
+}
+
+.component.breadcrumb .component_title span:last-of-type{
+	display:none;
+}
+
+.component.breadcrumb .content{
+	padding:0;
+	display:block;
+}

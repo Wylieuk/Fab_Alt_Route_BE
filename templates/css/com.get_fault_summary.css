@@ -1,0 +1,171 @@
+body {
+    width: 210mm;
+    height: 297mm;
+    font-family: "Nunito Sans", sans-serif;
+    position: relative;
+    padding: 60pt 10pt 10pt 10pt;
+    box-sizing: border-box;
+}
+
+.header-background {
+    border-top: 52pt solid #1e1e50;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header-content {
+    height: 52pt;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #fffffe;
+}
+
+.header-content h2 {
+    display: inline-block;
+    font-weight: normal;
+}
+
+.header-content img {
+    height: 20pt;
+    padding-left: 15pt;
+    padding-right: 5pt;
+}
+
+.title {
+    display: inline-block;
+    width: 150pt;
+    vertical-align: top;
+    font-weight: bold;
+}
+
+.fault-summary .value {
+    max-width: 415pt;
+}
+
+.fault-summary-item {
+    padding: 5pt 5pt 5pt 5pt;
+}
+
+.fault-summary-item .value {
+    display: inline-block;
+}
+
+.fault-summary-item .value::first-letter {
+    text-transform: capitalize;
+}
+
+.logs h2 {
+    margin: 10pt 0 10pt 0;
+    padding:5px 7px 7px 7px;
+    border-top: 4px solid #c4e3ff;
+    background-color: #d9ebfc9c;
+    border-radius: 7px 7px 0 0;
+}
+
+.logs .log-entry {
+    break-inside: avoid;
+    display: table;
+    font-size: smaller;
+    border-bottom: 0.5pt solid grey;
+    width: 750px;
+    margin-left: 5pt;
+}
+
+.logs .log-entry span {
+    display: table-cell;
+    padding: 5pt 5pt;
+}
+
+.logs .log-entry span:first-of-type {
+    padding-left: 0;
+}
+
+.log-entry .timestamp {
+    width: 95pt;
+}
+
+.log-entry .user {
+    width: 90pt;
+}
+
+.log-entry .action {
+    width: 40pt;
+}
+
+.log-entry .note {
+    width: calc(100% - 210pt);
+}
+
+.mailbox .mailbox-title {
+    margin-left: 5px;
+}
+
+.mailbox .email {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.mailbox .email.outbox {
+    background-color: #d9ebfc;
+}
+
+.mailbox .email.inbox {
+    background-color: lightgray;
+    margin-left: 5%;
+}
+
+.mailbox .email .date {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.mailbox .email .email-item .title {
+    width: 60pt!important;
+    margin-bottom: 7px;
+}
+
+.mailbox .email .mail-body {
+    font-size: 0.9em!important;
+    padding: 10px;
+}
+
+.mailbox .email .email-header {
+    padding: 10px 10px 5px 10px;
+    border-radius: 10px 10px 0 0;
+}
+
+.mailbox .email.outbox .email-header {
+    background-color: #b7dafa;
+}
+
+.mailbox .email.inbox .email-header {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.mailbox .email .mail-body h2, .mailbox .email .mail-body h3 {
+    width: auto!important;
+    margin: 0!important;
+    padding: 10px!important;
+    border-top: none!important;
+}
+
+.mailbox .email .mail-body h3 {
+    background-color: transparent!important;
+    border-top: none!important;
+    padding: 0px 0px 10px 0px !important;
+}
+
+.mailbox .email .mail-body p {
+    color: black!important;
+    background-color: transparent!important;
+}
+
+.mailbox .email .mail-body img {
+    max-width: 100%!important;
+    height: auto!important;
+}

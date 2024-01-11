@@ -1,0 +1,2 @@
+<label class="label_{$template_vars->id} {$template_vars->label_class}" for="{$template_vars->id}{if $template_vars->count !=''}~{$template_vars->count}{/if}">{$template_vars->label|lang}</label>
+<input id="{$template_vars->id}{if $template_vars->count}~{$template_vars->count}{/if}" name="{$template_vars->id}{if $template_vars->count}~{$template_vars->count}{/if}" class="{$template_vars->class} input" placeholder="{$template_vars->placeholder}" type="text" value="{$template_vars->value}" {$template_vars->additions}>

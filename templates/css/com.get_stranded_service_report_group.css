@@ -1,0 +1,89 @@
+body {
+    width: 210mm;
+    height: 297mm;
+    font-family: "Nunito Sans", sans-serif;
+    position: relative;
+    padding: 10pt 10pt 10pt 10pt;
+    box-sizing: border-box;
+}
+
+.title {
+    text-align: center;
+    color: #1e1e50;
+    background-color: #00bdf2;
+    padding: 10pt 0 20pt 0;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+.top-table table, .top-table th{
+    border-bottom: 0px;
+}
+
+.bottom-table table, .bottom-table th{
+    border-top: 0px;
+}
+
+table{
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse:collapse;
+}
+
+.top-header {
+    width: 25%;
+}
+
+.top-header.value {
+    font-weight: normal;
+}
+
+.header, .top-header, .table-cell {
+    font-size: smaller;
+    text-align: center;
+    padding: 5pt;
+}
+
+.header.main, .table-cell.small {
+    font-size: x-small;
+}
+
+.header.bottom, .header.main {
+    background-color: #00bdf2;
+    color: #1e1e50;
+}
+
+.minor {
+    background-color: #00af52;
+    color: white;
+    font-weight: bolder;
+}
+
+.moderate {
+    background-color: #ffce1e;
+    color: black;
+    font-weight: bolder;
+}
+
+.major {
+    background-color: #fa3537;
+    color: white;
+    font-weight: bolder;
+}
+
+.Ongoing {
+    background-color: #fa3537;
+    color: white;
+    font-weight: bolder;
+}
+
+.Resolved {
+    background-color: #00af52;
+    color: white;
+    font-weight: bolder;
+}

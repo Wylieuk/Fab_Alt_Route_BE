@@ -1,0 +1,142 @@
+body {
+    width: 210mm;
+    height: 297mm;
+    font-family: sans-serif;
+    position: relative;
+    padding: 10pt 10pt 10pt 10pt;
+    box-sizing: border-box;
+}
+
+    /* Minor Urgency CSS */
+.minor .title {
+    text-align: center;
+    background-color: #00af52;
+    color: #003d35;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid black;
+    font-weight: normal;
+}
+
+.minor .property {
+    background-color: #00af52;
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+
+
+    /* Moderate Urgency CSS */
+.moderate .title {
+    text-align: center;
+    background-color: #ffc000;
+    color: #003d35;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid black;
+    font-weight: normal;
+}
+
+.moderate .property {
+    background-color: #ffc000;
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+
+
+    /* Major Urgency CSS */
+.major .title {
+    text-align: center;
+    background-color: #fe0002;
+    color: #003d35;
+    margin: 0;
+    padding: 15px;
+    border: 1px solid black;
+    font-weight: normal;
+}
+
+.major .property {
+    background-color: #fe0002;
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+
+h1 {
+    margin: 10px 0px 10px 0px;
+}
+
+.date {
+    font-weight: bolder;
+}
+
+    /* Traction current YES */
+.traction {
+    color: #00af52;
+    text-align: center;
+    font-style: italic;
+}
+
+    /* Traction current NO */
+.noTraction {
+    color: red;
+    text-align: center;
+    font-style: italic;
+}
+
+
+
+    /* High Cofidence of Success */
+.high {
+    color: white;
+    background-color: #00da66;
+    text-align: center;
+    font-weight: bold;
+}
+
+    /* Medium Cofidence of Success */
+.medium {
+    color: black;
+    background-color: #f9fb00;
+    text-align: center;
+    font-weight: bold;
+}
+
+    /* Low Cofidence of Success */
+.low {
+    color: white;
+    background-color: #fb0000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.value.alert {
+    color: red;
+}
+
+.value {
+    text-align: center;
+}
+
+.heading {
+    text-align: center;
+    font-weight: bold;
+}
+
+.updates {
+    break-inside: avoid;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td {
+    border: solid 1px black;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px;
+}

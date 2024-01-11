@@ -1,0 +1,123 @@
+body {
+    width: 210mm;
+    height: 297mm;
+    font-family: "Nunito Sans", sans-serif;
+    position: relative;
+    padding: 60pt 10pt 10pt 10pt;
+    box-sizing: border-box;
+}
+
+.header-background {
+    border-top: 52pt solid #1e1e50;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header-content {
+    height: 52pt;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #fffffe;
+}
+
+.header-content h2 {
+    display: inline-block;
+    font-weight: normal;
+}
+
+.header-content img {
+    height: 20pt;
+    padding-left: 15pt;
+    padding-right: 5pt;
+}
+
+.title {
+    display: inline-block;
+    width: 100pt;
+}
+
+.route-name:after{
+    content: ', ';
+}
+
+.route-name:last-of-type:after{
+    content: '';
+}
+
+.incident-summary-item {
+    padding: 5pt 5pt 5pt 5pt;
+}
+
+.incident-summary-item .value {
+    display: inline-block;
+}
+
+.incident-summary-item .value::first-letter {
+    text-transform: capitalize;
+}
+
+.components h2 {
+    margin: 10pt 0 10pt 0;
+    margin-bottom: 8px;
+    padding:5px 7px 7px 7px;
+    border-top: 4px solid #c4e3ff;
+    background-color: #d9ebfc9c;
+    border-radius: 7px 7px 0 0;
+}
+
+table {
+    width: calc(100% - 12pt);
+    margin: 0 0 8pt 5pt;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 5px 0;
+}
+
+td {
+    font-size: smaller;
+    padding: 5px 0;
+}
+
+th, td {
+    border-bottom: 0.5pt solid grey;
+}
+
+.status, .time, .update-count {
+    text-align: center;
+}
+
+span.years:after {
+    content: 'y, ';
+}
+
+span.months:after {
+    content: 'm, ';
+}
+
+span.days:after {
+    content: 'd, ';
+}
+
+span.hours:after {
+    content: 'h, ';
+}
+
+span.minutes:after {
+    content: 'm';
+}
+
+p.MsoNormal {
+    margin: 0;
+    max-height: 20px;
+}
+
+p.MsoNormal:first-of-type {
+    margin: 10px 0 0 0;
+}

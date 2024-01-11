@@ -1,0 +1,41 @@
+.logs h2 {
+    margin: 10pt 0 10pt 0;
+    padding:5px 7px 7px 7px;
+    border-top: 4px solid #c4e3ff;
+    background-color: #d9ebfc9c;
+    border-radius: 7px 7px 0 0;
+}
+
+.logs .log-entry {
+    break-inside: avoid;
+    display: table;
+    font-size: smaller;
+    border-bottom: 0.5pt solid grey;
+    width: 750px;
+    margin-left: 5pt;
+}
+
+.logs .log-entry span {
+    display: table-cell;
+    padding: 5pt 5pt;
+}
+
+.logs .log-entry span:first-of-type {
+    padding-left: 0;
+}
+
+.log-entry .timestamp {
+    width: 95pt;
+}
+
+.log-entry .user {
+    width: 90pt;
+}
+
+.log-entry .action {
+    width: 40pt;
+}
+
+.log-entry .note {
+    width: calc(100% - 210pt);
+}
