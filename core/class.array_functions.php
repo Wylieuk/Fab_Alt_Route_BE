@@ -1,5 +1,5 @@
 <?php defined("isInSideApplication")?null:die('no access');
-
+#[AllowDynamicProperties]
 class array_functions{ 
 
     static function diff_recursive(array $array1, array $array2, array $ignoredkeys = [], ){

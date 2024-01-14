@@ -1,5 +1,6 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
+#[AllowDynamicProperties]
 class csv{
 	
 	#converts array to CSV string

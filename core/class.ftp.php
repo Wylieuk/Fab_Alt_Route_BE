@@ -1,5 +1,6 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
+#[AllowDynamicProperties]
 class ftp{
 	
 	function __construct($server, $username=false, $password=false, $options=array()){

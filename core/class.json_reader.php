@@ -1,5 +1,6 @@
 <?php
 
+#[AllowDynamicProperties]
 class json_reader{
 
     public $ttl = null;
@@ -124,10 +125,6 @@ class json_reader{
             return true;
         }
 
-        $t = json_decode(utf8_decode($string));
-        if (json_last_error() == JSON_ERROR_NONE){
-            return true;
-        }
 
         $t = json_decode(encoding::fixUTF8($string));
         if (json_last_error() == JSON_ERROR_NONE){

@@ -23,7 +23,11 @@ class files{
 	}
 
 	static function deleteFile($file){
-		return unlink($file);
+		if (file_exists($file)) {
+            return unlink($file);
+        } else {
+            return true;
+        }
 	}
 
 	static function renameDirectory($dir, $newDir){
@@ -103,6 +107,20 @@ class files{
 		}
 		return $files;
 	}
+
+    static function deleteDirFilesOlderThan($dirName, $timestamp) {
+        $files = self::getDirFiles($dirName);
+        $deleted = 0;
+
+        foreach ($files as $file) {
+            if ($file['modified'] < $timestamp) {
+                self::deleteFile($file['path'].$file['name']);
+                $deleted ++;
+            }
+        }
+
+        return $deleted . 'files deleted';
+    }
 }
 
 

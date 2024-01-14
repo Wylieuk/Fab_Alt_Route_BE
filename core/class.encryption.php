@@ -61,6 +61,14 @@ class encryption{
     protected $encryptMethod = 'AES-256-CBC';
 
 
+    static function cryptJsDecryptWrapper($encryptedString, $key){
+        if (empty($encryptedString)){
+            return $encryptedString;
+        }
+        $enc = new self;
+        return $enc->cryptJsDecrypt($encryptedString, $key);
+    }
+
     /**
      * Decrypt string.
      * 
@@ -112,6 +120,11 @@ class encryption{
         return $decrypted;
     }// decrypt
 
+
+    static function cryptJsEncryptWrapper($encryptedString, $key){
+        $enc = new self;
+        return $enc->cryptJsEncrypt($encryptedString, $key);
+    }
 
     /**
      * Encrypt string.

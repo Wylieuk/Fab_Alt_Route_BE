@@ -27,7 +27,7 @@ usage
  * @return void
  ***************************************/
 #[AllowDynamicProperties]
- class cache {
+class cache {
 
 	private $cache_file_name;
 	private $cache_file_suffix;
@@ -40,7 +40,6 @@ usage
         $cache_item = str_replace(['/', '\'', '<', '>', ':', '*', '|' ], '_', $cache_item);
 
         global $config;
-        global $configCacheItems;
 
         require_once('config/config.cache.php');
 
@@ -86,8 +85,7 @@ usage
 
         $this->expiry_timestamp     = $this->get_expiry_timestamp();
         $this->cache_file_name      = $config['cache_folder'] . '/' . $this->cache_item . '^' . $this->getQueryHash() . $this->cache_file_suffix;
-        $this->cache_item_cachable  = $configCacheItems[$this->cache_item]['cachable'] ?? false;
-
+        $this->cache_item_cachable  = $config['cacheItems'][$this->cache_item]['cachable'] ?? false;
                 						
 		if (!$this->cache_item_cachable){
             $this->removeCacheFile();
@@ -233,7 +231,7 @@ usage
                 }
 
                 // purge all out of date files
-                if ( (empty($this->expiry_timestamp) && file_exists($path . $file) && is_file($path . $file)) || (file_exists($path . $file) && is_file($path . $file) && filemtime($path . $file) < $this->expiry_timestamp)){
+                if ( file_exists($path.$file) && is_file($path . $file) && filemtime($path.$file) < ($this->expiry_timestamp ?? 0)){
                     unlink($path . $file);
                 }
             }
@@ -242,12 +240,25 @@ usage
 
         if( $file_count == 0){$purged = true;}
 
-	}
-	
+	}	
+
+    static function purgeAll(){
+        global $config;
+        $path = $config['cache_folder'].DIRECTORY_SEPARATOR;
+        $file_count = 0;
+        if ($handle = opendir($path)) {
+            while (false !== ($file = readdir($handle))) {        
+                if (file_exists($path . $file) && is_file($path . $file) ) {
+                       unlink($path . $file);
+                }
+            }
+        closedir($handle); 
+        }
+    }
 	
 	private function item_expired(){			
-		if (empty($this->cache_file_name) || !file_exists($this->cache_file_name)){ return true; }
-		if ( filemtime($this->cache_file_name) < $this->expiry_timestamp){
+		if (!file_exists($this->cache_file_name ?? '')){ return true; }
+		if ( filemtime($this->cache_file_name ?? '') < $this->expiry_timestamp){
 			return true;
 		}
 		return false;		

@@ -4,6 +4,7 @@
 defined("isInSideApplication")?null:die('no access');
 
 
+#[AllowDynamicProperties]
 class data {
     /*
     * usage: example of structure

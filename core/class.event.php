@@ -10,7 +10,7 @@ $event->trigger('afterSaveSubmission');
 
 */
 
-
+#[AllowDynamicProperties]
 class event{
 	
 	function __contruct(){

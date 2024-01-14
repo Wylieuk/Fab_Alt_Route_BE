@@ -39,6 +39,7 @@ POSSIBILITY OF SUCH DAMAGE.
  * @license  Revised BSD
   */
 
+  #[AllowDynamicProperties]
 
 class encoding {
 
@@ -341,9 +342,14 @@ class encoding {
   protected static function utf8_decode($text, $option = self::WITHOUT_ICONV)
   {
     if ($option == self::WITHOUT_ICONV || !function_exists('iconv')) {
-       $o = utf8_decode(
-         str_replace(array_keys(self::$utf8ToWin1252), array_values(self::$utf8ToWin1252), self::toUTF8($text))
-       );
+
+
+
+      $o = mb_convert_encoding(str_replace(array_keys(self::$utf8ToWin1252), array_values(self::$utf8ToWin1252), self::toUTF8($text)), "UTF-8", mb_detect_encoding(str_replace(array_keys(self::$utf8ToWin1252), array_values(self::$utf8ToWin1252), self::toUTF8($text))));
+
+      //  $o = utf8_decode(
+      //    str_replace(array_keys(self::$utf8ToWin1252), array_values(self::$utf8ToWin1252), self::toUTF8($text))
+      //  );
     } else {
        $o = iconv("UTF-8", "Windows-1252" . ($option === self::ICONV_TRANSLIT ? '//TRANSLIT' : ($option === self::ICONV_IGNORE ? '//IGNORE' : '')), $text);
     }

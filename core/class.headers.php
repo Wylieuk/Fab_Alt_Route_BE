@@ -2,6 +2,7 @@
 
 defined("isInSideApplication")?null:die('no access');
 
+#[AllowDynamicProperties]
 class headers{
 
     static function accessControlAsRefer(){

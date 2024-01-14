@@ -1,5 +1,6 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
+#[AllowDynamicProperties]
 class progress{
 
     function __construct($progressId=null, $purge=true){

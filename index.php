@@ -1,5 +1,8 @@
 <?php
 
+
+//echo '<pre>';print_r($_COOKIE); print_r($_SERVER); print_r(session_get_cookie_params());exit;
+
 define("isInSideApplication", true);
 
 header("Access-Control-Allow-Origin: null");
@@ -40,13 +43,13 @@ session_set_cookie_params([
     'lifetime' => $currentCookieParams["lifetime"],
     'path' => dirname($_SERVER['PHP_SELF']) . '/',
     'domain' => $currentCookieParams["domain"],
-    'secure' => true, // $currentCookieParams["secure"],
-    'httponly' => true,
+    'secure' => false, // $currentCookieParams["secure"],
+    'httponly' => false,
     'samesite' => $config['sameSiteCookie']
 ]);
 session_start();
 
-
+//phpinfo();exit;
 
 $_SESSION['time_start'] = microtime(true);
 //use browser cookie to control stack errors
@@ -87,6 +90,11 @@ if(isset($_REQUEST['page']) && $_REQUEST['page'] != 'get_progress'){
 }
 
 require_once('functions/function.include_files.php');
+
+
+//echo '**'.session_id();
+//debug($_REQUEST);
+//exit;
 
 $event = new event;
 

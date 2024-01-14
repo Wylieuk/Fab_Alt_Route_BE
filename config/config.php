@@ -29,7 +29,7 @@ define("ONEWEEK", 1*24*60*60*7);
 define("ONEDAY", 1*24*60*60);
 define("ONEHOUR", 1*60*60);
 define("ONEMINUTE", 1*60);
-define("FIXED_CYPHER_KEY" , 'This_Persephone3_5');
+define("FIXED_CYPHER_KEY" , 'This_Persephone3_5123ASDASDUTR(*)VVV');
 define("VARIABLE_CYPHER_KEY", base64_encode(date('FY'))); // key that can come from anywhere
 define("VARIABLE_SERVER_CYPHER_KEY", 'drm_'.base64_encode(date('WFmY'))); // key that originates from the server
 define("TOMORROW_2AM", date("Y-m-d", strtotime('tomorrow')). ' 02:00:00');

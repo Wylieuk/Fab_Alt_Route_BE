@@ -126,7 +126,7 @@ class log extends base_item{
                 ])."
                 END AS 'component'
 
-            FROM `logs` t1
+            FROM `{$config['coreTablePrefix']}logs` t1
                 LEFT JOIN `{$config['coreTablePrefix']}users` AS u1 ON t1.`user_id` = u1.`id`
                 LEFT JOIN `attractions` AS a1 ON t1.`component` = 'attraction' AND a1.`id` = t1.`component_id`
                 LEFT JOIN `offers` AS o1 ON t1.`component` = 'offer' AND o1.`id` = t1.`component_id`

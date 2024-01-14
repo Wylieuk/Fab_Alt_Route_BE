@@ -1,5 +1,6 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
+#[AllowDynamicProperties]
 class user_group{
 	
 	static function getGroupName($groupId){

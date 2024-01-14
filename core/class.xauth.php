@@ -1,5 +1,6 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
+#[AllowDynamicProperties]
 class xauth{
 
 

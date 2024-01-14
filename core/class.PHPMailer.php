@@ -29,6 +29,7 @@
  * @author Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>
  * @author Brent R. Matzelle (original founder)
  */
+#[AllowDynamicProperties]
 class PHPMailer
 {
     const CHARSET_ASCII = 'us-ascii';

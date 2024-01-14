@@ -1,6 +1,7 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
 
+#[AllowDynamicProperties]
 class xml2array{
 	
 	function convert($xml, $options = array()) {

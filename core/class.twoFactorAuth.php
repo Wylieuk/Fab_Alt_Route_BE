@@ -1,5 +1,6 @@
 <?php
 
+#[AllowDynamicProperties]
 class twoFactorAuth{
 
     private $config;

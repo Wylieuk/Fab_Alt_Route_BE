@@ -1,6 +1,7 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
 
+#[AllowDynamicProperties]
 class log_writer{
 			
 		static function write($filename, $str_data, $append=true, $endofLine = false){

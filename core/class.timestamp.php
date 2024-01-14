@@ -1,5 +1,6 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
+#[AllowDynamicProperties]
 class timestamp{
 	
 	static function is_same($submitted_timestamp, $stored_timestamp){
