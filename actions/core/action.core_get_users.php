@@ -9,7 +9,6 @@ if (!user::hasAccess(array('admin'))) {
 
 $users = user::getAll($search);
 
-
 $ignore = [];
 
 if (!user::hasAccess(array('admin'))) {
