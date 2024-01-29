@@ -1,6 +1,6 @@
 <?php defined("isInSideApplication")?null:die('no access');
 
-$fileConfigs = (function(){
+return  (function(){
 
     return [
 

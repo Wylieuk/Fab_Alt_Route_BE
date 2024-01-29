@@ -10,6 +10,7 @@ class alt_bus_route extends base_item{
         $this->assign($data);
     }
 
+
     public function purgeAll($target){
 
         $db = new db;

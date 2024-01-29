@@ -8,7 +8,8 @@ class import_handler{
     private $uploaderSettings;
     private $data;
     private $type;
-    private $baseCrs;
+    public $baseCrs;
+    public  $importedData;
 
 
     public function __construct(string $type, array $data, array $readerConfig, array $uploaderSettings=[]){
@@ -29,21 +30,23 @@ class import_handler{
 
         if($sheetConfig['titleRow']){
             $titleRow = array_shift($this->data);
-            $this->baseCrs = substr($titleRow['title'], 0, 3) ?? '';
+            $this->baseCrs = trim(substr($titleRow['title'], 0, 3) ?? '');
         }
 
+        if(empty($this->baseCrs) || strlen($this->baseCrs) != 3){
+            throw new Exception("Error importing file, missing main CRS code, first line in the TAB must start with the CRS code");
+        }
 
         $type = str_replace(' ', '_', strToLower($type ?? '')).'_import_handler';
 
-        
-        $this->insertCount = $this->handleImport();
+        $this->handleImport();
 
     }
 
 
     public function handleImport(){
 
-        $insertCount = 0;
+        $this->importedData = [];
 
         if(empty($this->readerConfig['targetClass'])){
             throw new Exception("No import class set in config for sheet {$this->type}. Please check the config file ");
@@ -53,19 +56,15 @@ class import_handler{
             throw new Exception("No import class for {$this->readerConfig['targetClass']} {$this->type}. Please check the config file ");
         }
 
-        if(!empty($this->uploaderSettings['overwriteData']) && $this->uploaderSettings['overwriteData']){
-            $_targetClass = new $this->readerConfig['targetClass']([]);
-            $_targetClass->purgeAll($this->baseCrs);
-        }
+        // if(!empty($this->uploaderSettings['overwriteData']) && $this->uploaderSettings['overwriteData']){
+        //     $_targetClass = new $this->readerConfig['targetClass']([]);
+        // }
 
+        
         foreach($this->data as $data){
-            $targetClass = new $this->readerConfig['targetClass'](['from_crs' => $this->baseCrs,  ...$data]);
-            $targetClass->save();
-            $insertCount++;
-            $targetClasss[] = $targetClass;
+            $this->importedData[] = new $this->readerConfig['targetClass'](['from_crs' => $this->baseCrs,  ...$data]);
         }
 
-        return $insertCount;
 
     }
 

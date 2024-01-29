@@ -218,6 +218,7 @@ class data_file{
 
         }
 
+        
         if (empty($this->fileSignatures[$signature])){
             throw new Exception("File signature[{$signature}] not recognised, please check you have the correct sheet/column labels");
         }
@@ -228,13 +229,11 @@ class data_file{
 
     private function loadConfig(){
 
-        include('libs/ref/file_configs.php'); //NOSONAR
-
-        if(empty($fileConfigs[$this->fileType])){
+        if(empty($this->allowedFileConfigs[$this->fileType])){
             throw new Exception("No config available for type {$this->fileType}");
         }
 
-        $this->readerConfig = $fileConfigs[$this->fileType];
+        $this->readerConfig = $this->allowedFileConfigs[$this->fileType];
     }
 
 }

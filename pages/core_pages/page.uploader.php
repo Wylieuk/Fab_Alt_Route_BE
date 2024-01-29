@@ -1,6 +1,7 @@
 <?php
 defined("isInSideApplication")?null:die('no access');
 
+set_time_limit(60*60);
 
 headers::accessControlAsRefer();
 headers::allowCredencials();

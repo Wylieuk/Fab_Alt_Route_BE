@@ -11,8 +11,9 @@ $badData = [];
 files::deleteDirFilesOlderThan('uploads', time() - (24 * 60 * 60 * 1));
 $fileList = json_decode(encryption::cryptJsDecryptWrapper($this->data['fileList'], VARIABLE_CYPHER_KEY));
 
-include_once('libs/ref/file_configs.php'); //NOSONAR
+$fileConfigs = include_once('libs/ref/file_configs.php'); //NOSONAR
 
+$importCount = 0;
 
 foreach($fileList as $fileName){
 
@@ -28,12 +29,22 @@ foreach($fileList as $fileName){
         }
     }
 
+    $fileData = [];
     if(!empty($dataFile->goodData)){
+        //loop over sheets
         foreach($dataFile->goodData as $sheetname => $data){
-            $import_handler = new import_handler($sheetname, $data, $dataFile->readerConfig, (array)json_decode($this->data['uploaderSettings'] ?? '[]'));
-            $rowsInserted = $rowsInserted + $import_handler->insertCount;
+            $ih = new import_handler($sheetname, $data, $dataFile->readerConfig, (array)json_decode($this->data['uploaderSettings'] ?? '[]'));
+            $sheetData = $ih->importedData ?? [];
+            $fileData[mb_strtolower($sheetname)] = $sheetData;
+            $rowsInserted = $rowsInserted + count($sheetData);
         }
     }
+
+    $station = new station(['crs' => strtoupper($ih->baseCrs), 'staged' => json_encode($fileData)]);
+
+    $station->save();
+
+    $importCount++;
 
 
     if (file_exists($fileName)){
@@ -46,7 +57,7 @@ foreach($fileList as $fileName){
 
 
 $this->response = [
-    'status' => $errorCount > 0 ? 'Imported ' . $rowsInserted . ' of ' . ($rowsInserted + $errorCount) . ' rows, with ' . $errorCount . ' error(s)' : 'Successfully imported ' . $rowsInserted . ' rows', 
+    'status' => $errorCount > 0 ? 'Imported ' . $importCount. ' of ' . count($fileList) . ' file, with ' . $errorCount . ' error(s)' : 'Successfully imported file(s)', 
     'summary' => array_slice($badData, 0, 1000), 
     'errorCount' => $errorCount,
     'memoryUseMb' => round((memory_get_peak_usage(true)/1024/1024), 2),

@@ -50,7 +50,6 @@ class base_item{
             unset($this->timestamp);
         }
 
-
         $query = $db->build_insert($this->table, (array)$this);
 
         $db->preparedQuery($query['statement'], $query['values']);
