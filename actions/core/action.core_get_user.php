@@ -10,26 +10,15 @@ if (!(user::hasAccess(array('admin')) || user::isSelf($this->data['id']))) {
 
 $userData = (object)user::getUserDetailsById($this->data['id'])[0];
 
-// if(!in_array(user_group::getGroupName($userData->group_id), ['toc', 'vendor'])){
-//     throw new Exception("This end point is only for vendors and TOCs");
-// }
 
 switch (user_group::getGroupName($userData->group_id)){
 
-
-    case 'vendor':
-        $user = vendor::get($this->data['id']);
-    break;
-
-    case 'toc':
-        $user = toc::get($this->data['id']);
-    break;
 
     case 'admin':
         $user = user::getUserDetailsById($this->data['id']);
     break;
 
-    case 'rdg':
+    case 'manager':
         $user = user::getUserDetailsById($this->data['id']);
     break;
     
@@ -38,4 +27,4 @@ switch (user_group::getGroupName($userData->group_id)){
 }
 
 
-$this->response = $user;
+$this->response = current($user ?? []);

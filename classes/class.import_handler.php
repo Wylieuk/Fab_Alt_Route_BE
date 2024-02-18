@@ -9,11 +9,11 @@ class import_handler{
     private $data;
     private $type;
     public $baseCrs;
-    public  $importedData;
+    public $baseName;
+    public $importedData;
 
 
     public function __construct(string $type, array $data, array $readerConfig, array $uploaderSettings=[]){
-
 
         $this->type             = $type;
         $this->readerConfig     = $readerConfig['sheets'][$type];
@@ -29,8 +29,10 @@ class import_handler{
         $sheetConfig = $readerConfig['sheets'][$type];
 
         if($sheetConfig['titleRow']){
-            $titleRow = array_shift($this->data);
-            $this->baseCrs = trim(substr($titleRow['title'], 0, 3) ?? '');
+            $titleRow = explode("-", array_shift($this->data)['title'] ?? '');
+            $this->baseCrs  = trim($titleRow[0] ?? '');
+            $this->baseName = trim($titleRow[1] ?? '');
+            
         }
 
         if(empty($this->baseCrs) || strlen($this->baseCrs) != 3){

@@ -24,12 +24,8 @@ $data->group_id = $existingUser->group_id;
 
 switch (user_group::getGroupName($data->group_id ?? null)){
 
-    case 'toc':
-        $id = toc::update((object)$data);
-    break;
-
-    case 'vendor':
-        $id = vendor::update((object)$data);
+    case 'manager':
+        $id = manager::update((object)$data);
     break;
 
     default:
@@ -40,11 +36,3 @@ switch (user_group::getGroupName($data->group_id ?? null)){
 
 $this->response = "User Id {$id} Updated";
 
-global $user;
-$log = new log([
-    'component'    => 'user',
-    'component_id' => $id,
-    'details'      => 'user pdated',
-    'user_id'       => $user->id
-]);
-$log->save();

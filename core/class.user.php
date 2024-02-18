@@ -152,7 +152,7 @@ class user {
 
 
 		$extendedData = [
-			'data' => json_encode($data->extended),
+			'data' => json_encode($data->extended ?? (object)[]),
 			'user_id' => $userId
 		];
 

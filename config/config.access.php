@@ -16,6 +16,7 @@ $config['requires_login']['log_viewer'] = true;
 $config['requires_login']['api'] = true;
 $config['requires_login']['api_public'] = false;
 $config['requires_login']['html_public'] = false;
+$config['requires_login']['get_usergroups'] = false;
 
 $config['requires_login']['self_activate_user'] = false;
 $config['requires_login']['cron_jobs'] = false;
@@ -27,18 +28,20 @@ $config['requires_login']['migration'] = false;
 // locations
 $config['group_access'] = 
     [
-        'core_get_menu'                         => ['admin', 'user'],
-        'core_get_user'                         => ['admin', 'user'],
-        'core_set_update_user'                  => ['admin', 'user'],
-        'core_get_password_check'               => ['admin', 'user'],
-        'core_get_users'                        => ['admin', 'user'],
-        'core_get_logs'                         => ['admin', 'user'],
+        'core_get_menu'                         => ['admin', 'manager'],
+        'core_get_user'                         => ['admin', 'manager'],
+        'core_set_update_user'                  => ['admin'],
+        'core_get_password_check'               => ['admin', 'manager'],
+        'core_get_users'                        => ['admin'],
+        'core_get_logs'                         => ['admin'],
+        'set_update_user'                       => ['admin', 'manager'],
 
-
-        'set_station_alt_routes'                => ['admin', 'user'],
+        'set_station_alt_routes'                => ['admin', 'manager'],
         'set_new_user'                          => ['admin'],
+        'set_station_live'                      => ['admin', 'manager'],
     
-        'get_stations'                          => ['admin'],
-        'get_dashboard'                         => ['admin', 'user'],
+        'get_station'                           => ['everyone'],
+        'get_stations'                          => ['admin', 'manager'],
+        'get_dashboard'                         => ['admin', 'manager'],
         
     ];

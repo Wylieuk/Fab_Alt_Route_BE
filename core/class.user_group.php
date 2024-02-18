@@ -32,6 +32,7 @@ class user_group{
 			return $cachedGroupId[$groupName];
 		}
 		$db = new db;
+
 		$query = 'SELECT * FROM `'.$config['coreTablePrefix'].'user_groups` WHERE `group_name` = :groupName';
 		$db->preparedQuery($query, ['groupName' => $groupName]);
 		$result =  $db->fetch_array();

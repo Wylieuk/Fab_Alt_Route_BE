@@ -8,7 +8,44 @@ class station extends base_item{
 
 
     public function __construct($data = []){
-        $this->assign($data);
+        $this->assign($data);       
+    }
+
+    public static function fetch(string $crs){
+
+     
+        $db = new db;
+
+        $__this__ = new (get_called_class())([]);
+    
+        $data = $db->preparedQuery(
+            "SELECT 
+                *
+            FROM `{$__this__->table}` t1
+            WHERE `crs` = :crs
+            LIMIT 1
+            ",
+            ["crs" => $crs]
+        )->fetch_array() ?? [];
+    
+        if(count($data) == 0){
+            return null;
+        }
+
+        $data = $data[0];
+
+
+        $data['station_name'] = ucwords(strtolower($data['station_name'] ?? ''), '-( ') ;
+        $data['staged'] = json_decode($data['staged']);
+        $data['live']   = json_decode($data['live']);
+
+        return new (get_called_class())($data);
+    }
+
+    public static function setLive($station){
+        $station = new (get_called_class())((array)$station);
+        $station->live = $station->staged;
+        return $station->save();
     }
 
     
@@ -47,6 +84,9 @@ class station extends base_item{
                 )->fetch_array() ?? [];
 
         foreach($data as &$row){
+
+            $row['station_name'] = ucwords(strtolower($row['station_name'] ?? ''), '-( ') ;
+
             $row['staged'] = json_decode($row['staged']);
             $row['live'] = json_decode($row['live']);
             $items[] =  new (get_called_class())($row);

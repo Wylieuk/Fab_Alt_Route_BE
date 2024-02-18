@@ -1,7 +1,4 @@
 cache
-libs/smarty
+uploads
 logs
 temp
-route_databases
-old_attachements
-assets/attraction_images

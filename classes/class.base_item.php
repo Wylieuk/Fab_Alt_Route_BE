@@ -45,6 +45,16 @@ class base_item{
         $db = new db;
 
         $this->beforeSave();
+
+        if(!empty($this->staged) && is_object($this->staged)){
+            $this->staged = json_encode($this->staged);
+        }
+
+        if(!empty($this->live) && is_object($this->live)){
+            $this->live = json_encode($this->live);
+        }
+
+        unset($this->has_staged_changes);
         
         if(!$withTimeStamp){
             unset($this->timestamp);

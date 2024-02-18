@@ -40,7 +40,7 @@ foreach($fileList as $fileName){
         }
     }
 
-    $station = new station(['crs' => strtoupper($ih->baseCrs), 'staged' => json_encode($fileData)]);
+    $station = new station(['crs' => strtoupper($ih->baseCrs), 'station_name' => strtoupper($ih->baseName), 'staged' => json_encode($fileData)]);
 
     $station->save();
 
