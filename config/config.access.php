@@ -40,7 +40,7 @@ $config['group_access'] =
         'set_new_user'                          => ['admin'],
         'set_station_live'                      => ['admin', 'manager'],
     
-        'get_station'                           => ['everyone'],
+        'get_station'                           => ['admin', 'manager'],
         'get_stations'                          => ['admin', 'manager'],
         'get_dashboard'                         => ['admin', 'manager'],
         

@@ -363,6 +363,8 @@ class user {
 		$db = new db;
 		$db->preparedQuery( 'SELECT * FROM `'.$config['coreTablePrefix'].'user_groups` WHERE `group_name` IN(:'.implode(', :',array_keys($arrayOfGroupNames)).')', $arrayOfGroupNames);
 		$result = $db->fetch_array();
+
+		//debug($arrayOfGroupNames);
 		foreach($result as $row){
 			$arrayOfGroupIds[] = $row['id'];
 		}
