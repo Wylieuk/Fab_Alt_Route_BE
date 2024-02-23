@@ -33,14 +33,20 @@ foreach($fileList as $fileName){
     if(!empty($dataFile->goodData)){
         //loop over sheets
         foreach($dataFile->goodData as $sheetname => $data){
-            $ih = new import_handler($sheetname, $data, $dataFile->readerConfig, (array)json_decode($this->data['uploaderSettings'] ?? '[]'));
-            $sheetData = $ih->importedData ?? [];
+            $ih                                  = new import_handler($sheetname, $data, $dataFile->readerConfig, (array)json_decode($this->data['uploaderSettings'] ?? '[]'));
+            $sheetData                           = $ih->importedData ?? [];
             $fileData[mb_strtolower($sheetname)] = $sheetData;
-            $rowsInserted = $rowsInserted + count($sheetData);
+            $fileData['uploaded']                = timestamp::db_format(time());
+            $rowsInserted                        = $rowsInserted + count($sheetData);
         }
     }
 
-    $station = new station(['crs' => strtoupper($ih->baseCrs), 'station_name' => strtoupper($ih->baseName), 'staged' => json_encode($fileData)]);
+    $station = new station([
+        'crs'          => strtoupper($ih->baseCrs), 
+        'station_name' => strtoupper($ih->baseName), 
+        'staged'       => json_encode($fileData),
+        'approved'     => 0,
+    ]);
 
     $station->save();
 
@@ -48,7 +54,7 @@ foreach($fileList as $fileName){
 
 
     if (file_exists($fileName)){
-        //unlink($fileName);
+        unlink($fileName);
     }
 
     cache::purgeAll();

@@ -1,8 +1,6 @@
 <?php
 
 
-//echo '<pre>';print_r($_COOKIE); print_r($_SERVER); print_r(session_get_cookie_params());exit;
-
 define("isInSideApplication", true);
 
 header("Access-Control-Allow-Origin: null");
@@ -43,11 +41,13 @@ session_set_cookie_params([
     'lifetime' => $currentCookieParams["lifetime"],
     'path' => dirname($_SERVER['PHP_SELF']) . '/',
     'domain' => $currentCookieParams["domain"],
-    'secure' => false, // $currentCookieParams["secure"],
-    'httponly' => false,
+    'secure' => true, // $currentCookieParams["secure"],
+    'httponly' => true,
     'samesite' => $config['sameSiteCookie']
 ]);
 session_start();
+//echo '<pre>';
+//print_r(session_id()); exit;
 
 //phpinfo();exit;
 

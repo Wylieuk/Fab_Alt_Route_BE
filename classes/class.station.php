@@ -28,7 +28,7 @@ class station extends base_item{
             ["crs" => $crs]
         )->fetch_array() ?? [];
     
-        if(count($data) == 0){
+        if(empty($data)){
             return null;
         }
 
@@ -47,6 +47,13 @@ class station extends base_item{
         $station->live = $station->staged;
         return $station->save();
     }
+
+    public static function setApproved($station){
+        $station = new (get_called_class())((array)$station);
+        $station->approved = 1;
+        return $station->save();
+    }
+
 
     
     public static function fetchAll(array $search = []){

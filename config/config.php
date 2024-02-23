@@ -84,7 +84,7 @@ $config['JSON_WEB_TOKEN_EXPIRATION']            = 60*60*12; //3600seconds =  1 h
 /*
 * Section: CROSS SITE SECURITY
 ***************************************/
-$config['sameSiteCookie']                      = 'none';
+$config['sameSiteCookie']                      = 'Lax';
 $config['allow_cors']                          = true; //enable when used as a back back end (server to server api) or in dev, set to false in production
 $config['CspNonce']                            = bin2hex(random_bytes(16));
 

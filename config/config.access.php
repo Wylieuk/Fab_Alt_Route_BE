@@ -39,6 +39,7 @@ $config['group_access'] =
         'set_station_alt_routes'                => ['admin', 'manager'],
         'set_new_user'                          => ['admin'],
         'set_station_live'                      => ['admin', 'manager'],
+        'set_station_approved'                  => ['admin', 'manager'],
     
         'get_station'                           => ['admin', 'manager'],
         'get_stations'                          => ['admin', 'manager'],
