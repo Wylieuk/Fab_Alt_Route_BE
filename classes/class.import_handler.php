@@ -68,6 +68,11 @@ class import_handler{
         }
 
 
+
+        if(isset($this->readerConfig['postProcess']) && is_callable($this->readerConfig['postProcess'])){
+            $this->importedData = $this->readerConfig['postProcess']($this->importedData);
+        }
+
     }
 
 }

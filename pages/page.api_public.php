@@ -11,7 +11,8 @@ try{
     $allowedActions = [
         'set_new_user',
         'set_activate_user_self',
-        'get_station'
+        'get_station',
+        'get_stations',
     ];
 
     if (!isset($this->data['action'])) {

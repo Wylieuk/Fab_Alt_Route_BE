@@ -6,7 +6,7 @@ class alt_bus_route extends base_item{
     protected $table            = 'alt_bus_routes';
 
     public function __construct($data){
-        $this->assign($data);       
+        $this->assign($data); 
     }
 
 

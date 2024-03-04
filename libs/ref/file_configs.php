@@ -16,6 +16,7 @@ return  (function(){
                     'verifyHeaders' => true,
                     'maxRowsToRead' => 500,
                     'stopOnEmptyRow' => true,
+                    'postProcess' => function($data){ usort($data, fn($a, $b) => $a->to_station <=> $b->to_station); return $data;},
                     'columns' => [
                         'A' => [
                             'name' => 'TO CRS:',
