@@ -34,6 +34,8 @@ foreach($fileList as $fileName){
         //loop over sheets
         foreach($dataFile->goodData as $sheetname => $data){
             $ih                                  = new import_handler($sheetname, $data, $dataFile->readerConfig, (array)json_decode($this->data['uploaderSettings'] ?? '[]'));
+            $baseCrs                             = $baseCrs ?? $ih->baseCrs;
+            $baseName                            = $baseName ?? $ih->baseName;
             $sheetData                           = $ih->importedData ?? [];
             $fileData[mb_strtolower($sheetname)] = $sheetData;
             $fileData['uploaded']                = timestamp::db_format(time());
@@ -41,11 +43,12 @@ foreach($fileList as $fileName){
         }
     }
 
+    
     $station = new station([
-        'crs'          => strtoupper($ih->baseCrs), 
-        'station_name' => strtoupper($ih->baseName), 
+        'crs'          => strtoupper($baseCrs), 
+        'station_name' => strtoupper($baseName), 
         'staged'       => json_encode($fileData),
-        'approved'     => 0,
+        'approved'     => 0
     ]);
 
     $station->save();

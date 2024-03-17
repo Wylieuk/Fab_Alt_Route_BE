@@ -83,7 +83,6 @@ class data_file{
                 
                 $this->data = $spr->load($this->filename, ucfirst($this->fileSuffix), $this->progress);
 
-
                 break;
     
             case 'csv':

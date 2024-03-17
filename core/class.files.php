@@ -1,5 +1,6 @@
 <?php
 
+#[AllowDynamicProperties]
 class files{
 
 	static function deleteDirectory($dir) {

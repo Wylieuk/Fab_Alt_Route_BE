@@ -118,12 +118,6 @@ class spreadsheet_reader{
                     throw new Exception("Sheet: {$sheetName} | Column data count not as expected, expecting max column ".current(array_keys(array_reverse($sheetConfig->columns)))." found {$sheet->getHighestDataColumn()}");
                 };
 
-            
-                
-                
-                
-                
-
                 while ($currentRow <= $this->maxRows && $currentRow <= $sheetConfig->maxRowsToRead ){
 
 

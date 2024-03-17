@@ -35,7 +35,7 @@ class import_handler{
             
         }
 
-        if(empty($this->baseCrs) || strlen($this->baseCrs) != 3){
+        if(!empty($sheetConfig['titleRow']) && (empty($this->baseCrs) || strlen($this->baseCrs) != 3)){
             throw new Exception("Error importing file, missing main CRS code, first line in the TAB must start with the CRS code");
         }
 
@@ -62,10 +62,19 @@ class import_handler{
         //     $_targetClass = new $this->readerConfig['targetClass']([]);
         // }
 
-        
-        foreach($this->data as $data){
-            $this->importedData[] = new $this->readerConfig['targetClass'](['from_crs' => $this->baseCrs,  ...$data]);
+        if($this->readerConfig['targetClass'] == 'params'){
+            foreach($this->data as $data){
+                $this->importedData[] = new $this->readerConfig['targetClass']($data);
+            }
+        } 
+
+        else {
+            foreach($this->data as $data){
+                $this->importedData[] = new $this->readerConfig['targetClass'](['from_crs' => $this->baseCrs,  ...$data]);
+            }
         }
+        
+        
 
 
 

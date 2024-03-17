@@ -144,6 +144,33 @@ return  (function(){
                             }
                         ]
                     ]
+                ],
+                'PARAMS' => [
+                    'targetClass' => 'params',
+                    'titleRow' => 0,
+                    'readTitleRow' => false,
+                    'maxColumnsToRead' => 100,
+                    'headerRow' => 1,
+                    'startDataRow' => 2,
+                    'verifyHeaders' => true,
+                    'maxRowsToRead' => 500,
+                    'stopOnEmptyRow' => true,
+                    'columns' => [
+                        'A' => [
+                            'name' => 'template',
+                            'translatedkey' => 'template',
+                            'type' => 'string',
+                            'preProcess' => function($v, $sheet=null, $currentRow=null){ //NOSONAR
+                                return $v;
+                            },
+                            'postProcess' => function($v, $row=null, $data=null){ //NOSONAR
+                                return $v;
+                            },
+                            'valid' => function($v, $sheet=null, $currentRow=null){ //NOSONAR
+                                return true;
+                            }
+                        ]
+                    ]
                 ]
             ]
         ]
