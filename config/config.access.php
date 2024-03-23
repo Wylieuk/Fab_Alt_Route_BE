@@ -18,6 +18,8 @@ $config['requires_login']['api_public'] = false;
 $config['requires_login']['html_public'] = false;
 $config['requires_login']['get_usergroups'] = false;
 
+$config['requires_login']['load_config'] = false;
+
 $config['requires_login']['self_activate_user'] = false;
 $config['requires_login']['cron_jobs'] = false;
 $config['requires_login']['html'] = false;

@@ -85,7 +85,8 @@ class station extends base_item{
                     "SELECT 
                         *
                     FROM `{$__this__->table}` t1
-                    {$searchSql}"
+                    {$searchSql}
+                    ORDER BY `station_name`"
                     , $searchParams
                     //, true
                 )->fetch_array() ?? [];

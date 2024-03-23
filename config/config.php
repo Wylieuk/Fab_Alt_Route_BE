@@ -36,42 +36,18 @@ define("TOMORROW_2AM", date("Y-m-d", strtotime('tomorrow')). ' 02:00:00');
 define("TODAY_2AM", date("Y-m-d", time()). ' 02:00:00');
 define("MAX_DATE", '2035-01-01 12:00:00');
 
+
+$config['feConfigFile'] = 'config/fe_config.cnf';
+
 /*
 * Section: mailbox
 **************************************/
-// $config['pop3hostname']              = '{neptune: 143}INBOX';
-// $config['pop3username']              = 'seims@dev.fabcomms.co.uk'; 
-// $config['pop3password']              = '_fabrik2021';
-// $config['supplierEmail']             = 'harry.adams@fabcomms.co.uk'; //'cis.support@worldline.com'
-// //$config['faultMailCcAddress']       = 'clint.chenery@fabcomms.co.uk'; //'custinfosupport@southeasternrailway.co.uk'
-// $config['maxAttachmentSizeMb']       = '512';
-// $config['maxAttachmentImageWidth']   = '1500';
-// $config['maxAttachmentImageHeight']  = '1500';
+
 
 /*
 * Section: END POINTS
 ***************************************/
-// $config['NRES_KB_ENDPOINT']          = "https://nres.fabdigital.uk/index.php?page=kb&kbfeed=stations";
-// $config['NRES_FAB_API_KEY']          = '_fab36223_';
-// $config['twitter_search_recent']     = 'https://api.twitter.com/2/tweets/search/recent?';
-// $config['twitter_bearer_token']      = 'AAAAAAAAAAAAAAAAAAAAACmRSgEAAAAAI2auqKXEw%2B%2FRWN33HqC%2BDnl4R4U%3DcovJeHIV5NMawm0EkFGHbpRIgLGerv1GhYpVGg1j5pnjhyzs0z';
-// $config['nres_incidents_feed']       = 'https://nres.fabdigital.uk/index.php?page=kb&kbfeed=incidents&apikey=_fab36223_';
-// $config['average_tweet_levels']      = 'http://commutelondon.com/volumes/average/SOUTHEASTERN';
-// $config['today_tweet_levels']        = 'http://commutelondon.com/volumes/today/SOUTHEASTERN';
-// $config['trending_keywords']         = 'http://commutelondon.com/CommuteLondon/CommuteLondon?getrequest=tocscreen3&gettocname=SOUTHEASTERN';
-// $config['trending_hashtags']         = 'http://commutelondon.com/CommuteLondon/CommuteLondon?getrequest=tocscreen2&gettocname=SOUTHEASTERN';
-// $config['trending_locations']        = 'http://commutelondon.com/CommuteLondon/CommuteLondon?getrequest=tocscreen1&gettocname=SOUTHEASTERN';
-// $config['nexusAlphaRainbowBoardXML'] = 'http://rainbow.journeycheck.com/se_lbgScreen';
-// //$config['LDBSVWS']                   = 'https://dev.fabcomms.co.uk/darwin2/index.php?page=LDBSVWS&';
-// $config['LDBSVWS']                   = 'https://darwin.fabdigital.uk/index.php?page=LDBSVWS&apikey=darwinFabrik6543216351_&';
 
-// //$config['darwin']                    = 'https://dev.fabdigital.uk/darwin/index.php?page=api&apikey=darwinFabrik6543216351_';
-// $config['darwin']                    = 'https://darwin.fabdigital.uk/index.php?page=api&apikey=darwinFabrik6543216351_';
-
-// //$config['CIF_API']                   = 'https://dev.fabcomms.co.uk/cifapi/src';
-
-// $config['CIF_API'] = 'https://cif.fabdigital.uk/cif_api';
-// //$config['CIF_API'] = 'https://dev.fabdigital.uk/cifapi';
 
 /*
 * Section: JWT CONFIG
@@ -203,14 +179,14 @@ $config['compressCache']                        = true;
 /*
 * Section: EMAIL
 ***************************************/
-$config['enableOutgoingEmail']                  = true;
+$config['enableOutgoingEmail']                  = false;
 $config['debugEmail']                           = false;
 $config['email_errors']                         = false;
 $config['email_fatal_errors']                   = false;
 $config['email_errors_target']                  = 'clint@net-key.co.uk';
-$config['email_alert_target']                   = 'harry.adams@fabdigital.uk';
-//$config['email_errors_target']                  = 'harry.adams@fabcomms.co.uk';
-$config['from_email']                           = 'no_reply@promotoolkit.co.uk';
+$config['email_alert_target']                   = 'clint@net-key.co.uk';
+
+$config['from_email']                           = 'no_reply@fab_alt_routes.co.uk';
 $config['enableRootSmarty']                     = false;
 // $config['email_frontend_url']                 = 'https://www.promotoolkit.co.uk/#/';
 
