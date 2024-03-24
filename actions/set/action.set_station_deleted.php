@@ -4,6 +4,6 @@ if(!$this->data['station'] ?? false){
     throw new Exception('Station error');
 }
 
-$station = json_decode($this->data['station']);
+$station = new station((array)json_decode($this->data['station']));
 
-$this->response = station::setLive($station);
+$this->response = $station->delete();

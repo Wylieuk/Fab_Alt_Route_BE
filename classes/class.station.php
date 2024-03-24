@@ -44,6 +44,9 @@ class station extends base_item{
 
     public static function setLive($station){
         $station = new (get_called_class())((array)$station);
+        if(empty($station->staged)){
+            return -1;
+        }
         $station->live = $station->staged;
         return $station->save();
     }
@@ -54,6 +57,9 @@ class station extends base_item{
         return $station->save();
     }
 
+    public function beforeSave(){
+        unset($this->systemMeta);
+    }
 
     
     public static function fetchAll(array $search = []){

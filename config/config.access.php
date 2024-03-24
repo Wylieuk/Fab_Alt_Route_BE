@@ -42,6 +42,7 @@ $config['group_access'] =
         'set_new_user'                          => ['admin'],
         'set_station_live'                      => ['admin', 'manager'],
         'set_station_approved'                  => ['admin', 'manager'],
+        'set_station_deleted'                   => ['admin', 'manager'],
     
         'get_station'                           => ['admin', 'manager'],
         'get_stations'                          => ['admin', 'manager'],

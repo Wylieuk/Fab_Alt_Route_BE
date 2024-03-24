@@ -49,9 +49,15 @@ class base_item{
         if(!empty($this->staged) && is_object($this->staged)){
             $this->staged = json_encode($this->staged);
         }
+        elseif(isset($this->staged) && !is_string($this->staged)) {
+            $this->staged = '{}';
+        }
 
         if(!empty($this->live) && is_object($this->live)){
             $this->live = json_encode($this->live);
+        }
+        elseif(isset($this->live) && !is_string($this->live)){
+            $this->live = '{}';
         }
 
         unset($this->has_staged_changes);
@@ -74,10 +80,10 @@ class base_item{
     }
 
 
-    public function delete($id=null, $pending=''){
+    public function delete($id=null){
         $id = $id ?? $this->id;
         $db = new db;
-        $db->preparedQuery("DELETE FROM `{$this->table}` WHERE `id` = :id LIMIT 1", ['id' => $id]);
+        return $db->preparedQuery("DELETE FROM `{$this->table}` WHERE `id` = :id LIMIT 1", ['id' => $id]);
     }
 
     public static function _delete($id=null, $pending=''){

@@ -6,4 +6,4 @@ if(!$this->data['station'] ?? false){
 
 $station = json_decode($this->data['station']);
 
-return station::setApproved($station);
+$this->response = station::setApproved($station);
