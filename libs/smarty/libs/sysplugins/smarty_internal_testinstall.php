@@ -144,8 +144,8 @@ class Smarty_Internal_TestInstall
         }
         // test if all registered plugins_dir are accessible
         // and if core plugins directory is still registered
-        $_core_plugins_dir = realpath(__DIR__ . '/../plugins');
-        $_core_plugins_available = false;
+        $'.$config['coreTablePrefix'].'plugins_dir = realpath(__DIR__ . '/../plugins');
+        $'.$config['coreTablePrefix'].'plugins_available = false;
         foreach ($smarty->getPluginsDir() as $plugin_dir) {
             $_plugin_dir = $plugin_dir;
             $plugin_dir = realpath($plugin_dir);
@@ -200,8 +200,8 @@ class Smarty_Internal_TestInstall
                 } else {
                     $errors[ 'plugins_dir' ] = $message;
                 }
-            } elseif ($_core_plugins_dir && $_core_plugins_dir == realpath($plugin_dir)) {
-                $_core_plugins_available = true;
+            } elseif ($'.$config['coreTablePrefix'].'plugins_dir && $'.$config['coreTablePrefix'].'plugins_dir == realpath($plugin_dir)) {
+                $'.$config['coreTablePrefix'].'plugins_available = true;
                 if ($errors === null) {
                     echo "$plugin_dir is OK.\n";
                 }
@@ -211,7 +211,7 @@ class Smarty_Internal_TestInstall
                 }
             }
         }
-        if (!$_core_plugins_available) {
+        if (!$'.$config['coreTablePrefix'].'plugins_available) {
             $status = false;
             $message = "WARNING: Smarty's own libs/plugins is not available";
             if ($errors === null) {

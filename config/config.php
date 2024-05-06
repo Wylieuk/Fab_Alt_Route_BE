@@ -84,7 +84,10 @@ $config['validatePasswordStrength']             = true;
 /*
 * Section: 2 FACTOR AUTHENTICATION
 ***************************************/
-$config['2faEnabled']                           = false;
+$config['2faEnabled']                           = true;
+$config['2faChannel']                           = 'email'; // email/sms
+
+//twilio settings (sms)
 $config['2faBaseUrl']                           = 'https://verify.twilio.com/v2/';
 $config['2faTwilioServiceId']                   = 'VAe62ec2ffb50c3a58e7b27357bc2c4cb5';
 $config['2faAccountSid']                        = 'AC096ec2d6f9e303871e2cf162c6ee2e27';
@@ -179,7 +182,7 @@ $config['compressCache']                        = true;
 /*
 * Section: EMAIL
 ***************************************/
-$config['enableOutgoingEmail']                  = false;
+$config['enableOutgoingEmail']                  = true;
 $config['debugEmail']                           = false;
 $config['email_errors']                         = false;
 $config['email_fatal_errors']                   = false;

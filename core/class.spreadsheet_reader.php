@@ -102,6 +102,11 @@ class spreadsheet_reader{
 
             foreach ($this->spreadsheet->getSheetNames() as $sheetName){
                 $currentRow       = 1;
+
+                if(empty($this->config->sheets[$sheetName])){
+                    throw new Exception("`$sheetName` missing from config");
+                }
+
                 $sheetConfig      = (object)$this->config->sheets[$sheetName];
 
                 $data[$sheetName] = [];

@@ -22,7 +22,7 @@
       "strapLine": "During disruption or engineering work, replacement buses may be arranged. For further information, please check our website or app, speak to a member of staff or listen out for announcements.",
       "featureSet":{
         "auth" : {
-          "twofa": false,
+          "twofa": true,
           "selfEditProfile": true,
           "resetPassword": true,
           "selfRegister": false

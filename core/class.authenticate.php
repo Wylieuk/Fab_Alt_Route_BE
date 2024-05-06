@@ -4,8 +4,8 @@ defined("isInSideApplication")?null:die('no access');
 #[AllowDynamicProperties]
 class authenticate{
 	
-	private $passed					= NULL;
-	private $looked_up				= NULL;
+	private $passed				= NULL;
+	private $looked_up			= NULL;
 		
 	function __construct(){
 		$this->db = new db;
@@ -23,7 +23,7 @@ class authenticate{
 		
 	}
 		
-	public function checkCredentials ($username=NULL, $password=NULL, $twoFactorAuthToken=null){
+	public function checkCredentials ($username=NULL, $password=NULL, $twoFactorAuthToken=null, $remember2fa=null){
 
 		global $config;
 		global $event;
@@ -82,7 +82,7 @@ class authenticate{
 					});
 					$event->trigger('afterLoginSuccess');
 
-                    $loginResult = $this->checkTwoFactorAuthToken($this->looked_up, $twoFactorAuthToken);
+                    $loginResult = $this->checkTwoFactorAuthToken($this->looked_up, $twoFactorAuthToken, $remember2fa);
 
 				}
 		break;
@@ -92,7 +92,6 @@ class authenticate{
 		}
 
         if ($loginResult === true){
-			
             return $loginResult;
         } else {
             $event->trigger('afterLoginFailed');
@@ -100,30 +99,35 @@ class authenticate{
         }
 	}
 
-    private function checkTwoFactorAuthToken($user, $twoFactorAuthCode){
+    private function checkTwoFactorAuthToken($user, $twoFactorAuthCode, $remember2fa){
 
-        
         global $config;
 
-        if (!$config['2faEnabled'] || !$user['enable_2fa']){
+        //debug((isset($_COOKIE['remember2fa']) && $_COOKIE['remember2fa'] == encryption::medHash($user['username'] . $user['id'])));
+        //exit;
+
+        if (!$config['2faEnabled'] || !$user['enable_2fa'] || (isset($_COOKIE['remember2fa']) && $_COOKIE['remember2fa'] == encryption::medHash($user['username'] . $user['id']))){
             return true;
         }
 
-
-        //debug($twoFactorAuthCode);exit;
 
         $tfa = new twoFactorAuth($config);
 
         if($twoFactorAuthCode === null || $twoFactorAuthCode === 'null'){
 
-
-            if (!isset($user['phone_number']) || (strpos($user['phone_number'], '+') !== 0) || (strlen($user['phone_number']) < 12)){
+            if ($tfa->config->channel == 'sms' && (!isset($user['phone_number']) || (strpos($user['phone_number'], '+') !== 0) || (strlen($user['phone_number']) < 12))){
                 headers::accessControlAsRefer();
                 headers::json();
                 die(json_encode(['error' => 'There is a problem with the users stored phone number, unable to send sms. Please constact support.']));
             }
 
-            $reply = $tfa->triggerNewToken(trim($user['phone_number']));
+            if ($tfa->config->channel == 'email' && !isset($user['email'])){
+                headers::accessControlAsRefer();
+                headers::json();
+                die(json_encode(['error' => 'There is a problem with the users stored email address, unable to send 2fa email. Please constact support.']));
+            }
+
+            $reply = $tfa->triggerNewToken($user);
 
             if ( $reply->status == 'pending'){
 
@@ -141,13 +145,29 @@ class authenticate{
 
         } else {
 
-            $reply = $tfa->verifyToken(trim($user['phone_number']), trim($twoFactorAuthCode));
+            $reply = $tfa->verifyToken($user, $twoFactorAuthCode);
 
             if (isset($reply->status) && $reply->status === 'approved'){
+
+				//set cookie here if they have ticked the box
+                if ($remember2fa) {
+                    setcookie('remember2fa', encryption::medHash($user['username'] . $user['id']), [
+                        'expires' => time() + (135 * 24 * 60 * 60),
+                        'path' => dirname($_SERVER['PHP_SELF']) . '/',
+                        'domain' => '',
+                        'secure' => true,
+                        'httponly' => true,
+                        'samesite' => $config['sameSiteCookie']
+                    ]);
+                }
 
                 return true;
 
             } else if (isset($reply->status) && $reply->status !== 'approved' ){
+
+
+                block::logFailedLogin(['username' => $user['username'], 'ip' => $_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN']);
+                log_writer::write($config['authentication_log'],  ' | ' . ($_SERVER['REMOTE_ADDR'] ?? 'UNKNOWN') . ' | ' . __FUNCTION__.':'.__LINE__. ' | Two-Factor-Authenication failed | User: ' . $user['username'] . PHP_EOL, true);
 
                 headers::accessControlAsRefer();
                 headers::json();
@@ -156,7 +176,7 @@ class authenticate{
             } else {
 
                 return false;
-                trigger_error('Error: bad response from 2FA service' . json_encode($reply ));
+                trigger_error('Error: Bad response from 2FA service ' . json_encode($reply));
 
             }
 

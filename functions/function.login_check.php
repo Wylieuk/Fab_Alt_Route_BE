@@ -115,7 +115,7 @@ global $config;
        
         
 
-		if ($authenticate->checkCredentials($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['twoFactorAuthCode'] ?? null)){         
+		if ($authenticate->checkCredentials($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['twoFactorAuthCode'] ?? null, $_REQUEST['remember2fa'] ?? null)){         
 			$user_details = $authenticate->userDetails();
 			$jwt = new jwt($config['JSON_WEB_TOKEN_KEY']);
 			$jwt->set_client_storage_type($config['JSON_WEB_TOKEN_STORAGE']);
